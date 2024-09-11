@@ -1,3 +1,4 @@
+(function(){function LongPress(el,opts,cb){var defOpts={interval:1000};this.beforeClick=false;this.longPressTimer=null;this.mouseMoveCounter=0;this.timeCounter=0;defOpts=extend(defOpts,opts);this.handleTouchStart=function(e){e.preventDefault();var _this=this;_this.beforeClick=true;_this.mouseMoveCounter=0;_this.timeCounter=0;_this.longPressTimer=setInterval(function(){_this.timeCounter+=1;if(typeof defOpts.onProgress==="function"){defOpts.onProgress.call(_this,_this.timeCounter/(defOpts.interval/100))}if(_this.timeCounter>=defOpts.interval/100){typeof defOpts.onComplete==="function"&&defOpts.onComplete.call(_this);clearInterval(_this.longPressTimer)}},100)};this.handleTouchMove=function(e){if(this.beforeClick){clearInterval(this.longPressTimer)}};this.handleMouseMove=function(e){if(this.beforeClick){this.mouseMoveCounter+=1;if(this.mouseMoveCounter>1){clearInterval(this.longPressTimer)}}};this.handleTouchEnd=function(e){this.beforeClick=false;this.mouseMoveCounter=0;this.longPressTimer&&clearInterval(this.longPressTimer)};function extend(obj,obj2){for(var i in obj2){if(obj2.hasOwnProperty(i)){if(typeof obj2[i]==="object"){obj[i]=extend(obj[i]||{},obj2[i])}else{obj[i]=obj2[i]}}}return obj}el.addEventListener("touchstart",this.handleTouchStart,false);el.addEventListener("mousedown",this.handleTouchStart,false);el.addEventListener("touchmove",this.handleTouchMove,false);el.addEventListener("mousemove",this.handleMouseMove,false);el.addEventListener("touchend",this.handleTouchEnd,false);el.addEventListener("mouseup",this.handleTouchEnd,false)}if(typeof module!=="undefined"&&typeof exports==="object"){module.exports=LongPress}else{if(typeof define==="function"&&(define.amd||define.cmd)){define(function(){return LongPress})}else{this.LongPress=LongPress}}})();
 class Params {
   constructor(w,l,qty,boxes) {
     this.w = w,
@@ -56,12 +57,18 @@ input_boxes.oninput = ()=>{
 input_boxes.on
 btn_calc.addEventListener('click', ()=> {
   
+  
   output.value = calcS(params) + 'м²'
     // console.log(tilesList)
-  console.log(isRepeat(params.w, params.l))
-  if(!isRepeat(params.w, params.l)){
-    addTile(params.w, params.l)
-  }
+  // console.log(isRepeat(params.w, params.l))
+  console.log(calcS(params.w, params.l))
+  
+  console.log(calcS(params.w, params.l) == NaN)
+    if(!isRepeat(params.w, params.l)){
+      addTile(params.w, params.l)
+    }
+  
+  
   
   // if(!isRepeat(params.l, params.w)){
   //   addTile(params.w, params.l)
@@ -93,7 +100,35 @@ function addTile(width, length) {
     }
     
 
-
+    new LongPress(newTile,{
+      interval: 1000,
+      onProgress: function(percent){
+        if(percent <=0.5){
+          input_l.value = length
+          input_w.value = width
+          output.value = '-'
+      
+          params.w = width
+          params.l = length
+      
+          newTile.style.backgroundColor = '#ffffff29'
+          // newTile.style.color = 'black'
+          newTile.style.borderWidth = '4px'
+          // newTile.style.fontSize = 'larger'
+          // newTileElem.style.display = 'none'
+        
+          getSiblings(newTile).forEach((elem)=>{
+            elem.style.backgroundColor =''
+          })
+        }
+        console.log(percent)
+      },
+      onComplete: function(){
+        console.log('complete')
+        tilesListElem.removeChild(newTile)
+        tilesList.splice(tilesList.indexOf(new Tile(width, length)))
+      }
+    })
 
   
   newTile.addEventListener('click', ()=>{
