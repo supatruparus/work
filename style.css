@@ -13,14 +13,14 @@ body {
 button{
   color: rgba(240, 248, 255, 0.521);
   background-color: black;
-  font-size: 2vh;
+  /* font-size: 2vh; */
 }
 .wrapper{
   display: flex;
       align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 90vh;
+  height: 90dvh;
 }
 .wrapper>*{
   margin-bottom: 10px;
@@ -86,4 +86,6 @@ button{
 #result{
   font-size: larger;
 }
+
+
 
