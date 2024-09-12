@@ -1,4 +1,4 @@
-(function(){function LongPress(el,opts,cb){var defOpts={interval:1000};this.beforeClick=false;this.longPressTimer=null;this.mouseMoveCounter=0;this.timeCounter=0;defOpts=extend(defOpts,opts);this.handleTouchStart=function(e){e.preventDefault();var _this=this;_this.beforeClick=true;_this.mouseMoveCounter=0;_this.timeCounter=0;_this.longPressTimer=setInterval(function(){_this.timeCounter+=1;if(typeof defOpts.onProgress==="function"){defOpts.onProgress.call(_this,_this.timeCounter/(defOpts.interval/100))}if(_this.timeCounter>=defOpts.interval/100){typeof defOpts.onComplete==="function"&&defOpts.onComplete.call(_this);clearInterval(_this.longPressTimer)}},100)};this.handleTouchMove=function(e){if(this.beforeClick){clearInterval(this.longPressTimer)}};this.handleMouseMove=function(e){if(this.beforeClick){this.mouseMoveCounter+=1;if(this.mouseMoveCounter>1){clearInterval(this.longPressTimer)}}};this.handleTouchEnd=function(e){this.beforeClick=false;this.mouseMoveCounter=0;this.longPressTimer&&clearInterval(this.longPressTimer)};function extend(obj,obj2){for(var i in obj2){if(obj2.hasOwnProperty(i)){if(typeof obj2[i]==="object"){obj[i]=extend(obj[i]||{},obj2[i])}else{obj[i]=obj2[i]}}}return obj}el.addEventListener("touchstart",this.handleTouchStart,false);el.addEventListener("mousedown",this.handleTouchStart,false);el.addEventListener("touchmove",this.handleTouchMove,false);el.addEventListener("mousemove",this.handleMouseMove,false);el.addEventListener("touchend",this.handleTouchEnd,false);el.addEventListener("mouseup",this.handleTouchEnd,false)}if(typeof module!=="undefined"&&typeof exports==="object"){module.exports=LongPress}else{if(typeof define==="function"&&(define.amd||define.cmd)){define(function(){return LongPress})}else{this.LongPress=LongPress}}})();
+!function(e,t){"use strict";var n=null,a="PointerEvent"in e||e.navigator&&"msPointerEnabled"in e.navigator,i="ontouchstart"in e||navigator.MaxTouchPoints>0||navigator.msMaxTouchPoints>0,o=a?"pointerdown":i?"touchstart":"mousedown",r=a?"pointerup":i?"touchend":"mouseup",m=a?"pointermove":i?"touchmove":"mousemove",u=a?"pointerleave":i?"touchleave":"mouseleave",s=0,c=0,l=10,v=10;function f(e){p(),e=function(e){if(void 0!==e.changedTouches)return e.changedTouches[0];return e}(e),this.dispatchEvent(new CustomEvent("long-press",{bubbles:!0,cancelable:!0,detail:{clientX:e.clientX,clientY:e.clientY,offsetX:e.offsetX,offsetY:e.offsetY,pageX:e.pageX,pageY:e.pageY},clientX:e.clientX,clientY:e.clientY,offsetX:e.offsetX,offsetY:e.offsetY,pageX:e.pageX,pageY:e.pageY,screenX:e.screenX,screenY:e.screenY}))||t.addEventListener("click",function e(n){t.removeEventListener("click",e,!0),function(e){e.stopImmediatePropagation(),e.preventDefault(),e.stopPropagation()}(n)},!0)}function d(a){p(a);var i=a.target,o=parseInt(function(e,n,a){for(;e&&e!==t.documentElement;){var i=e.getAttribute(n);if(i)return i;e=e.parentNode}return a}(i,"data-long-press-delay","1500"),10);n=function(t,n){if(!(e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame&&e.mozCancelRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame))return e.setTimeout(t,n);var a=(new Date).getTime(),i={},o=function(){(new Date).getTime()-a>=n?t.call():i.value=requestAnimFrame(o)};return i.value=requestAnimFrame(o),i}(f.bind(i,a),o)}function p(t){var a;(a=n)&&(e.cancelAnimationFrame?e.cancelAnimationFrame(a.value):e.webkitCancelAnimationFrame?e.webkitCancelAnimationFrame(a.value):e.webkitCancelRequestAnimationFrame?e.webkitCancelRequestAnimationFrame(a.value):e.mozCancelRequestAnimationFrame?e.mozCancelRequestAnimationFrame(a.value):e.oCancelRequestAnimationFrame?e.oCancelRequestAnimationFrame(a.value):e.msCancelRequestAnimationFrame?e.msCancelRequestAnimationFrame(a.value):clearTimeout(a)),n=null}"function"!=typeof e.CustomEvent&&(e.CustomEvent=function(e,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=t.createEvent("CustomEvent");return a.initCustomEvent(e,n.bubbles,n.cancelable,n.detail),a},e.CustomEvent.prototype=e.Event.prototype),e.requestAnimFrame=e.requestAnimationFrame||e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(t){e.setTimeout(t,1e3/60)},t.addEventListener(r,p,!0),t.addEventListener(u,p,!0),t.addEventListener(m,function(e){var t=Math.abs(s-e.clientX),n=Math.abs(c-e.clientY);(t>=l||n>=v)&&p()},!0),t.addEventListener("wheel",p,!0),t.addEventListener("scroll",p,!0),t.addEventListener("contextmenu",p,!0),t.addEventListener(o,function(e){s=e.clientX,c=e.clientY,d(e)},!0)}(window,document);
 class Params {
   constructor(w,l,qty,boxes) {
     this.w = w,
@@ -7,6 +7,12 @@ class Params {
     this.boxes = boxes
   }
 
+}
+class Tile {
+  constructor(width,length) {
+    this.width = width,
+    this.length = length
+  }
 }
 
 const input_l = document.getElementById('length')
@@ -21,15 +27,10 @@ const btnAddTile = document.getElementById('btnAddTile')
 const tilesListElem = document.getElementById('tiles')
 
 let params = new Params(0, 0, 1, 1);
-
 let tilesList = []
 
-// btn_showAddTile.addEventListener('click', ()=>{
-//   newTileElem.style.display = 'flex'
-// })
-// btnAddTile.addEventListener('click', ()=>{
-//   addTile(input_w.value, input_l.value)
-// })
+
+addTile(100, 100)
 
 
 input_l.addEventListener('input',()=>{
@@ -37,36 +38,52 @@ input_l.addEventListener('input',()=>{
   showParams()
   output.value = '-'
 })
+input_l.addEventListener('dblclick', ()=>{
+  input_l.select()
+})
 input_w.addEventListener('input', ()=>{
   params.w = event.target.value
   showParams()
   output.value = '-'
 })
+input_w.addEventListener('focus', ()=>{
+  input_w.select()
+})
 
-input_qty.addEventListener('change',()=>{
+input_qty.addEventListener('input',()=>{
   params.qty = event.target.value
   showParams()
   output.value = '-'
 })
+input_qty.addEventListener('focus', ()=>{
+  input_qty.select()
+})
 
-input_boxes.oninput = ()=>{
+
+input_boxes.addEventListener('input', ()=>{
   params.boxes = input_boxes.value
   showParams()
   output.value = '-'
-}
-input_boxes.on
+})
+input_boxes.addEventListener('focus', ()=>{
+  input_boxes.select()
+})
 btn_calc.addEventListener('click', ()=> {
   
   
-  output.value = calcS(params) + 'м²'
+  
     // console.log(tilesList)
   // console.log(isRepeat(params.w, params.l))
   console.log(calcS(params.w, params.l))
   
   console.log(calcS(params.w, params.l) == NaN)
-    if(!isRepeat(params.w, params.l)){
-      addTile(params.w, params.l)
-    }
+    if(!(params.w ==0 || params.l == 0)){
+
+      if(!isRepeat(params.w, params.l)){
+        addTile(params.w, params.l)
+        output.value = calcS(params) + 'м²'
+      }
+    }  else{console.log('нулевой параметр')}
   
   
   
@@ -78,12 +95,7 @@ btn_calc.addEventListener('click', ()=> {
 
 
 
-class Tile {
-  constructor(width,length) {
-    this.width = width,
-    this.length = length
-  }
-}
+
 function addTile(width, length) {
   tilesList.push(new Tile(width, length))
     console.log(tilesList)
@@ -98,40 +110,18 @@ function addTile(width, length) {
       tile_s.innerHTML = `${width*length/1000000}м²`
       newTile.insertAdjacentElement("beforeend",tile_s)
     }
-    
-
-    new LongPress(newTile,{
-      interval: 1000,
-      onProgress: function(percent){
-        if(percent <=0.5){
-          input_l.value = length
-          input_w.value = width
-          output.value = '-'
-      
-          params.w = width
-          params.l = length
-      
-          newTile.style.backgroundColor = '#ffffff29'
-          // newTile.style.color = 'black'
-          newTile.style.borderWidth = '4px'
-          // newTile.style.fontSize = 'larger'
-          // newTileElem.style.display = 'none'
-        
-          getSiblings(newTile).forEach((elem)=>{
-            elem.style.backgroundColor =''
-          })
-        }
-        console.log(percent)
-      },
-      onComplete: function(){
-        console.log('complete')
-        tilesListElem.removeChild(newTile)
-        tilesList.splice(tilesList.indexOf(new Tile(width, length)))
-      }
+  
+    newTile.addEventListener('long-press', ()=>{
+      event.preventDefault()
+      console.log('long')
+      tilesListElem.removeChild(newTile)
+      tilesList.splice(tilesList.indexOf(new Tile(width, length)))
     })
+
 
   
   newTile.addEventListener('click', ()=>{
+    console.log()
     input_l.value = length
     input_w.value = width
     output.value = '-'
