@@ -21,6 +21,7 @@ button{
   flex-direction: column;
   justify-content: space-evenly;
   height: max(90vh, 650px);
+  max-width: 600px;
 }
 .wrapper>*{
   margin-bottom: 10px;
@@ -51,27 +52,28 @@ button{
   display: flex;
   width: 100%;
   justify-content: space-between;
-
 }
 .inputs{
   /* outline: 1px solid green; */
-/* position: relative; */
+  /* position: relative; */
   /* background-color: orange; */
   display: flex;
   align-items: center;
+  max-width: 100%;
   flex-direction: column;
 }
 
 #tiles{
   /* background-color: blue; */
   display: inline-block;
-  width: 90vw;
+  /* width: 90vw; */
   /* min-height: 300px; */
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
   box-sizing: border-box;
   padding: min(10vh, 15px);
+  max-width: 100%;
 }
 .tile{
   border: 2px solid whitesmoke;
