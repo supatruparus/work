@@ -4,11 +4,11 @@
 body {
     font-size: 3vh;
     display: flex;
-      align-items: center;
-  flex-direction: column;
-  background-color: black;
-  color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    color: #dedede;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 button{
   color: rgba(240, 248, 255, 0.521);
@@ -17,15 +17,25 @@ button{
 }
 .wrapper{
   display: flex;
-      align-items: center;
+  align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 90dvh;
+  height: max(90vh, 650px);
 }
 .wrapper>*{
   margin-bottom: 10px;
   
   
+}
+.input{
+  min-height: 40px;
+  font-size: larger;
+  max-width: 110px;
+  /* color: #a9a9a9; */
+  background-color: #ffffff;
+  border-radius: 10px;
+  border-color: black;
+  border: 1px black;
 }
 .inputs{
   height: 60%;
@@ -54,7 +64,7 @@ button{
 #tiles{
   /* background-color: blue; */
   display: inline-block;
-  width: 80vw;
+  /* width: 80vw; */
   /* min-height: 300px; */
   white-space: nowrap;
   overflow-x: scroll;
@@ -76,9 +86,14 @@ button{
 }
 
 #btn_calc{
-  font-size: x-large;
+  font-size: larger;
   min-height: 70px;
-  border: 2.5px solid whitesmoke;
+  min-width: 160px;
+  /* background-color: #3a3a67; */
+  color: #c7c7c7;
+  border: 1px solid;
+  border-color: antiquewhite;
+  border-radius: 10px;
 }
 #btn_calc:active{
   background-color: rgba(240, 248, 255, 0.342);
@@ -86,6 +101,8 @@ button{
 #result{
   font-size: larger;
 }
+
+
 
 
 
