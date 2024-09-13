@@ -64,26 +64,18 @@ input_l.addEventListener('input', () => {
   showParams()
   output.value = '-'
 })
-// input_l.addEventListener('focus', ()=>{
-//   input_l.select()
-// })
+
 input_w.addEventListener('input', () => {
   params.w = event.target.value
   showParams()
   output.value = '-'
 })
-// input_w.addEventListener('focus', ()=>{
-//   input_w.select()
-// })
 
 input_qty.addEventListener('input', () => {
   params.qty = event.target.value
   showParams()
   output.value = '-'
 })
-// input_qty.addEventListener('focus', ()=>{
-//   input_qty.select()
-// })
 
 
 input_boxes.addEventListener('input', () => {
@@ -92,18 +84,15 @@ input_boxes.addEventListener('input', () => {
   output.value = '-'
 })
 
-// input_boxes.addEventListener('focus', ()=>{
-//   input_boxes.select()
-// })
 
 btn_calc.addEventListener('click', () => {
-  console.log(calcS(params.w, params.l))
-
-  console.log(calcS(params.w, params.l) == NaN)
+  console.log(params)
   if (!(params.w == 0 || params.l == 0)) {
 
-    if (!isRepeat(params.w, params.l)) {
+    if (!isRepeat(params.w, params.l)) { //если такой плитки не было
       addTile(params.w, params.l)
+      output.value = calcS(params) + 'м²'
+    }else{
       output.value = calcS(params) + 'м²'
     }
   } else { console.log('нулевой параметр') }
