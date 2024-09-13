@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-    font-size: 3vh;
+    font-size: xx-large;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -22,6 +22,7 @@ button{
   justify-content: space-evenly;
   height: max(90vh, 650px);
   max-width: 600px;
+  width: 100vw;
 }
 .wrapper>*{
   margin-bottom: 10px;
@@ -33,11 +34,14 @@ button{
   font-size: x-large;
   max-width: 110px;
   /* color: #a9a9a9; */
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   border-radius: 10px;
   border-color: black;
   border: 1px black;
   /* font-family: math; */
+}
+.input:auto-fill{
+  background-color: white;
 }
 .inputs{
   height: 60%;
@@ -52,6 +56,7 @@ button{
   display: flex;
   width: 100%;
   justify-content: space-between;
+  padding: 0 2vw;
 }
 .inputs{
   /* outline: 1px solid green; */
@@ -79,8 +84,15 @@ button{
   border: 2px solid whitesmoke;
   margin-right: 3vw;
   position: relative;
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 20vh;
+  max-height: 20vh;
+  color: #ffc055;
+  font-weight: 700;
+}
+.tile__s{
+  font-weight: 100;
+  color: #8e8e8e;
+  font-size: smaller;
 }
 #btnShowAddTile{
   min-width: 50px;
@@ -88,17 +100,28 @@ button{
 }
 
 #btn_calc{
-  font-size: larger;
+  /* font-size: larger;
   min-height: 70px;
   min-width: 160px;
-  /* background-color: #3a3a67; */
   color: #c7c7c7;
   border: 1px solid;
   border-color: antiquewhite;
-  border-radius: 10px;
+  border-radius: 10px; */
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #333;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+
 }
+
+
 #btn_calc:active{
-  background-color: rgba(240, 248, 255, 0.342);
+  /* background-color: rgba(240, 248, 255, 0.342); */
+  background-color: #333;
+  color: #fff;
 }
 #result{
   font-size: larger;
