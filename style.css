@@ -70,10 +70,7 @@ button{
 }
 
 #tiles{
-  /* background-color: blue; */
   display: inline-block;
-  /* width: 90vw; */
-  /* min-height: 300px; */
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -97,30 +94,21 @@ button{
 }
 #btnShowAddTile{
   min-width: 50px;
-  /* min-height:50px ; */
 }
 
 #btn_calc{
-  /* font-size: larger;
-  min-height: 70px;
+   min-height: 70px;
   min-width: 160px;
-  color: #c7c7c7;
-  border: 1px solid;
-  border-color: antiquewhite;
-  border-radius: 10px; */
-  background-color: transparent;
   color: #333;
   border: 2px solid #333;
   padding: 10px 20px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: x-large;
   cursor: pointer;
 
 }
 
-
 #btn_calc:active{
-  /* background-color: rgba(240, 248, 255, 0.342); */
   background-color: #333;
   color: #fff;
 }
