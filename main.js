@@ -29,11 +29,6 @@ const tilesListElem = document.getElementById('tiles')
 let params = new Params(0, 0, 1, 1);
 let tilesList = []
 
-
-
-addTile(500, 500)
-
-
 const inputs = [input_l, input_w, input_qty, input_boxes]
 inputs.forEach((elem) => elem.addEventListener('focus', () => {
   elem.select();
