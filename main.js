@@ -153,7 +153,7 @@ function addTile(width, length) {
     })
   })
   newTile.classList.add(['newTile'])
-  if(width>==15 || length >==15){
+  if(true){
     if(length>=width){
       newTile.style.height = `${width/length*300}px`
       newTile.style.width = `${length/length*300}px`
