@@ -31,7 +31,7 @@ let tilesList = []
 
 
 
-// addTile(500, 1000)
+addTile(500, 500)
 
 
 const inputs = [input_l, input_w, input_qty, input_boxes]
@@ -116,14 +116,25 @@ function addTile(width, length) {
     tile_s.classList.add('tile__s')
     tile_s.innerHTML = `${width * length / 1000000}м²`
     newTile.insertAdjacentElement("beforeend", tile_s)
+
+    const tile_deleteBtn = document.createElement('button')
+    tile_deleteBtn.style.position = 'absolute'
+    tile_deleteBtn.style.top = '0px'
+    tile_deleteBtn.style.right = '0px'
+    tile_deleteBtn.innerHTML = 'x'
+    tile_deleteBtn.style.height = '10px'
+    tile_deleteBtn.style.width = '10px'
+    newTile.insertAdjacentElement('beforeend', tile_deleteBtn)
+    tile_deleteBtn.onclick = ()=>{
+      console.log('delete')
+      tilesListElem.removeChild(newTile)
+      tilesList.splice(tilesList.indexOf(new Tile(width, length)))
+
+
+
+    }
   
 
-  newTile.addEventListener('long-press', () => {
-    event.preventDefault()
-    console.log('long')
-    tilesListElem.removeChild(newTile)
-    tilesList.splice(tilesList.indexOf(new Tile(width, length)))
-  })
 
 
 
