@@ -82,6 +82,7 @@ button{
 }
 .tile:focus{
   font-size: large;
+  background-color: #dedede3b;
 }
 .tile__s{
   font-weight: 100;
