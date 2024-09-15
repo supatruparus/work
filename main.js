@@ -9,9 +9,9 @@ class Params {
 
 }
 class Tile {
-  constructor(width, length) {
+  constructor(width, height) {
     this.width = width,
-      this.length = length
+    this.height = height
   }
 }
 
@@ -34,18 +34,18 @@ inputs.forEach((elem) => elem.addEventListener('focus', () => {
   elem.select();
 })
 )
-inputs.forEach((elem)=>{
-  elem.addEventListener('submit', ()=>{
+inputs.forEach((elem) => {
+  elem.addEventListener('submit', () => {
     console.log(calcS(params.w, params.l))
 
     console.log(calcS(params.w, params.l) == NaN)
     if (!(params.w == 0 || params.l == 0)) {
-  
+
       if (!isRepeat(params.w, params.l)) {//если такой плитки не было
         addTile(params.w, params.l)
         output.value = calcS(params) + 'м²'
       }
-      else{//если плитка была
+      else {//если плитка была
         output.value = calcS(params) + 'м²'
 
       }
@@ -87,7 +87,7 @@ btn_calc.addEventListener('click', () => {
     if (!isRepeat(params.w, params.l)) { //если такой плитки не было
       addTile(params.w, params.l)
       output.value = calcS(params) + 'м²'
-    }else{
+    } else {
       output.value = calcS(params) + 'м²'
     }
   } else { console.log('нулевой параметр') }
@@ -97,50 +97,46 @@ btn_calc.addEventListener('click', () => {
 
 
 
-function addTile(width, length) {
-  tilesList.push(new Tile(width, length))
+function addTile(width, height) {
+  tilesList.push(new Tile(width, height))
   console.log(tilesList)
   const newTile = document.createElement('button')
   newTile.className = 'tile'
 
-    newTile.innerHTML = `${width}×${length}`
-    const tile_s = document.createElement('div')
-    tile_s.style.position = 'absolute'
-    tile_s.style.bottom = '1px'
-    // tile_s.style.margin = '0 auto'
-    tile_s.classList.add('tile__s')
-    tile_s.innerHTML = `${width * length / 1000000}м²`
-    newTile.insertAdjacentElement("beforeend", tile_s)
+  newTile.innerHTML = `${width}×${height}`
+  const tile_s = document.createElement('div')
+  tile_s.style.position = 'absolute'
+  tile_s.style.bottom = '1px'
+  // tile_s.style.margin = '0 auto'
+  tile_s.classList.add('tile__s')
+  tile_s.innerHTML = `${width * height / 1000000}м²`
+  newTile.insertAdjacentElement("beforeend", tile_s)
 
-    const tile_deleteBtn = document.createElement('button')
-    tile_deleteBtn.style.position = 'absolute'
-    tile_deleteBtn.style.top = '0px'
-    tile_deleteBtn.style.right = '0px'
-    tile_deleteBtn.innerHTML = 'x'
-    tile_deleteBtn.style.height = '10px'
-    tile_deleteBtn.style.width = '10px'
-    newTile.insertAdjacentElement('beforeend', tile_deleteBtn)
-    tile_deleteBtn.onclick = ()=>{
-      console.log('delete')
-      tilesListElem.removeChild(newTile)
-      tilesList.splice(tilesList.indexOf(new Tile(width, length)))
+  const tile_deleteBtn = document.createElement('button')
+  tile_deleteBtn.classList.add('tile__deleteBtn')
+  tile_deleteBtn.innerHTML = 'x'
+  newTile.insertAdjacentElement('beforeend', tile_deleteBtn)
+  tile_deleteBtn.onclick = () => {
+    console.log('delete')
+    tilesListElem.removeChild(newTile)
+    tilesList.splice(tilesList.indexOf(new Tile(width, height)))
 
 
 
-    }
-  
+  }
+
 
 
 
 
   newTile.addEventListener('click', () => {
     console.log()
-    input_l.value = length
+    input_l.value = height
     input_w.value = width
     output.value = '-'
 
     params.w = width
-    params.l = length
+    params.l = height
 
     newTile.style.backgroundColor = '#ffffff29'
     // newTile.style.color = 'black'
@@ -153,38 +149,24 @@ function addTile(width, length) {
     })
   })
   newTile.classList.add(['newTile'])
-  if(true){
-    if(length>=width){
-      newTile.style.height = `${width/length*300}px`
-      newTile.style.width = `${length/length*300}px`
-  
-    }else{
-      newTile.style.width= `${width/length*300}px`
-      newTile.style.height = `${length/length*300}px`
-    }
-  }else{
-    if(length>=width){
-      newTile.style.height = `${width/length*300 +10}px`
-      newTile.style.width = `${length/length*300 +10}px`
-  
-    }else{
-      newTile.style.width= `${width/length*300 + 10}px`
-      newTile.style.height = `${length/length*300+10}px`
-    }
+  if (width > height) {
+    newTile.style.width = `${width / width * 300}px`
+    newTile.style.height = `${height / width * 300}px`
+    console.log('width>length')
+  } else {
+    newTile.style.width = `${height / height * 300}px`
+    newTile.style.height = `${width / height * 300}px`
   }
-  
-
-  
 
   tilesListElem.insertBefore(newTile, btn_showAddTile)
 }
 
 function calcS(params) {
   // Tab to edit
-  if(params.boxes =='' || params.boxes == 0){
+  if (params.boxes == '' || params.boxes == 0) {
     params.boxes = 1
   }
-  if(params.qty =='' || params.qty == 0){
+  if (params.qty == '' || params.qty == 0) {
     params.qty = 1
   }
   let result = params.l * params.w * params.qty * params.boxes / 1000000
@@ -208,24 +190,34 @@ function showParams() {
   console.log(params)
 }
 
-function isRepeat(width, length) {
+function isRepeat(width, height) {
+
   let isRepeat = false
   if (tilesList.length === 0) {
-    console.log('is empty')
+    console.log('первая')
     return isRepeat
   } else {
     for (let index = 0; index < tilesList.length; index++) {
       const element = tilesList[index];
-      if (element.width == width && element.length == length) {
-        console.log('уже был')
+      if ((element.width == height && element.height == width) || (element.width == width && element.height == height)) {
+        console.log(`width = ${element.width} height = ${element.height}`)
+
         isRepeat = true
-        console.log(`isRepeat = ${isRepeat}`)
         break;
       } else {
+
         isRepeat = false
       }
     }
-    return isRepeat
 
+
+    
   }
+  if(isRepeat){
+    console.log('уже была')
+}else{
+  console.log('новая плитка')
+
+}
+  return isRepeat
 }
