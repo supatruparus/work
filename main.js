@@ -81,7 +81,7 @@ input_boxes.addEventListener('input', () => {
   output.value = '-'
 })
 pie.addEventListener('input', () => {
-  params.l = event.target.value
+  params.pie = event.target.value
   showParams()
   output.value = '-'
 })
