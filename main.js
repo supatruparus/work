@@ -167,8 +167,8 @@ function calcS(params) {
   if (params.qty == '' || params.qty == 0) {
     params.qty = 1
   }
-  let result = params.l * params.w * params.qty * params.boxes + pie / 1000000
-
+  let result = params.l * params.w * (params.qty * params.boxes + pie) / 1000000
+  console.log(params)
   return result
 
 
