@@ -38,9 +38,7 @@ inputs.forEach((elem) => elem.addEventListener('focus', () => {
 )
 inputs.forEach((elem) => {
   elem.addEventListener('submit', () => {
-    console.log(calcS(params.w, params.l))
 
-    console.log(calcS(params.w, params.l) == NaN)
     if (!(params.w == 0 || params.l == 0)) {
 
       if (!isRepeat(params.w, params.l)) {//если такой плитки не было
@@ -167,7 +165,7 @@ function calcS(params) {
   if (params.qty == '' || params.qty == 0) {
     params.qty = 1
   }
-  let result = params.l * params.w * (params.qty * params.boxes + params.pie) / 1000000
+  let result = (params.qty*params.boxes+params.pie)*params.l*params.w/ 1000000
   console.log(params)
   return result
 
