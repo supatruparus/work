@@ -78,10 +78,10 @@ button{
   max-height: 20vh;
   color: #ffc055;
   font-weight: 700;
-  transition: font-size 1s;
+  transition: font-size 0.25s;
 }
 .tile:focus{
-  font-size: large;
+  font-size: medium;
   background-color: #dedede3b;
 }
 .tile__s{
