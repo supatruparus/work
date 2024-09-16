@@ -4,8 +4,7 @@ class Params {
     this.w = w,
       this.l = h,
       this.qty = qty,
-      this.boxes = boxes,
-    this.pie
+      this.boxes = boxes
     
   }
 
