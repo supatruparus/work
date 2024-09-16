@@ -124,6 +124,8 @@ function addTile(width, height) {
   newTile.addEventListener('click', () => {
     input_height.value = height
     input_width.value = width
+    params.height = height
+    params.width = width
     output.value = '-'
     // params.w = width
     // params.l = height
