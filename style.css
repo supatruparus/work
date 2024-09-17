@@ -149,3 +149,11 @@ button{
 .inputLine>span{
   color: orange;
 }
+#btn_pirogova{
+  height: 100%;
+  width: 100%;
+  color: transparent;
+}
+#btn_pirogova:hover{
+  color: white;
+}
