@@ -32,10 +32,10 @@ button{
 .input{
   font-size: x-large;
   text-align: center;
-  border-radius: -9px;
+  border-radius: 10px;
   /* border-color: black; */
-  /* border: 4px white; */
-  background: #4f4f4f;
+  border: 4px white;
+  background: #161616;
   color: #ffa62e;
   font-weight: 700;
   width: 100px;
@@ -144,3 +144,6 @@ button{
   text-align: start;
 }
 
+.inputLine>span{
+  color: orange;
+}

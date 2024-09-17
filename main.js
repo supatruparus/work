@@ -39,10 +39,10 @@ inputs.forEach((elem) => elem.addEventListener('focus', () => {
 inputs.forEach((elem) => {
   elem.addEventListener('submit', () => {
 
-    if (!(params.w == 0 || params.l == 0)) {
+    if (!(params.w == 0 || params.h == 0)) {
 
-      if (!isRepeat(params.w, params.l)) {//если такой плитки не было
-        addTile(params.w, params.l)
+      if (!isRepeat(params.w, params.h)) {//если такой плитки не было
+        addTile(params.w, params.h)
         output.value = calcS(params) + 'м²'
       }
       else {//если плитка была
@@ -55,7 +55,7 @@ inputs.forEach((elem) => {
 
 
 input_height.addEventListener('input', () => {
-  params.l = Number(event.target.value)
+  params.h = Number(event.target.value)
   showParams()
   output.value = '-'
 })
@@ -87,10 +87,10 @@ pie.addEventListener('input', () => {
 
 btn_calc.addEventListener('click', () => {
   console.log(params)
-  if (!(params.w == 0 || params.l == 0)) {
+  if (!(params.w == 0 || params.h == 0)) {
 
-    if (!isRepeat(params.w, params.l)) { //если такой плитки не было
-      addTile(params.w, params.l)
+    if (!isRepeat(params.w, params.h)) { //если такой плитки не было
+      addTile(params.w, params.h)
       output.value = calcS(params) + 'м²'
     } else {
       output.value = calcS(params) + 'м²'
@@ -129,7 +129,7 @@ function addTile(width, height) {
   newTile.addEventListener('click', () => {
     input_height.value = height
     input_width.value = width
-    params.l = height
+    params.h = height
     params.w = width
     output.value = '-'
     getSiblings(newTile).forEach((elem) => {
@@ -163,7 +163,8 @@ function calcS(params) {
   if (params.qty == '' || params.qty == 0) {
     params.qty = 1
   }
-  let result = (params.qty*params.boxes+params.pie)*params.l*params.w/ 1000000
+  let result = (params.qty*params.boxes+params.pie)*params.h*params.w/ 1000000
+  console.log(params)
   console.log(`штук: ${(params.qty*params.boxes+params.pie)}`)
   return result
 
@@ -195,8 +196,6 @@ function isRepeat(width, height) {
       const element = tilesList[index];
       if ((element.width == height && element.height == width) || (element.width == width && element.height == height)) {
         console.log(`width = ${element.width} height = ${element.height}`)
-        element.style.focus = 
-
         isRepeat = true
         break;
       } else {
@@ -204,9 +203,6 @@ function isRepeat(width, height) {
         isRepeat = false
       }
     }
-
-
-    
   }
   if(isRepeat){
     console.log('уже была')
