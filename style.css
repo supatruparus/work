@@ -39,6 +39,8 @@ button{
   color: #ffa62e;
   font-weight: 700;
   width: 100px;
+  width: 28vw;
+  height: 40px;
 }
 .input:auto-fill{
   background-color: white;
