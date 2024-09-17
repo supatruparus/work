@@ -21,7 +21,7 @@ button{
   justify-content: start;
   height: max(90vh, 650px);
   width: 100vw;
-  max-width: 600px;
+  /* max-width: 450px; */
   width: 100vw;
 }
 .wrapper>*{
@@ -31,10 +31,14 @@ button{
 }
 .input{
   font-size: x-large;
-  max-width: 110px;
-  border-radius: 10px;
-  border-color: black;
-  border: 1px black;
+  text-align: center;
+  border-radius: -9px;
+  /* border-color: black; */
+  /* border: 4px white; */
+  background: #4f4f4f;
+  color: #ffa62e;
+  font-weight: 700;
+  width: 100px;
 }
 .input:auto-fill{
   background-color: white;
@@ -50,14 +54,17 @@ button{
 
 .inputLine{
   display: flex;
+  justify-content: center;
+  align-items: end;
+  font-size: x-large;
+  color: #bfbfbf;
   width: 100%;
-  justify-content: space-between;
-  padding: 0 2vw;
+  gap: 1vw;
 }
 .inputs{
-  display: flex;
-  align-items: center;
-  max-width: 100%;
+  /* display: flex; */
+  /* align-items: center; */
+  width: 100%;
   flex-direction: column;
 }
 
@@ -78,10 +85,11 @@ button{
   max-height: 20vh;
   color: #ffc055;
   font-weight: 700;
+  font-size: large;
   transition: font-size 0.25s;
 }
 .tile:focus{
-  font-size: medium;
+  font-size: x-large;
   background-color: #dedede3b;
 }
 .tile__s{
@@ -103,10 +111,10 @@ button{
 }
 
 #btn_calc{
-  min-height: 70px;
+  /* min-height: 31px; */
   min-width: 160px;
   color: #adadad;
-  border: 3px solid #777;
+  border: 3px solid #fff;
   padding: 10px 20px;
   font-weight: 800;
   border-radius: 10px;
@@ -120,5 +128,19 @@ button{
 }
 #result{
   font-size: larger;
+  color: white;
+}
+.input1{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.input-block{
+  align-items: center;
+  font-size: medium;
+  display: flex;
+  max-width: min-content;
+  flex-direction: column;
+  text-align: start;
 }
 

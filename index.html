@@ -16,37 +16,43 @@
       <div id="tiles">
       </div>
       <div class="inputLine">
-        <span>ширина(мм):</span>
-        <input class="input" id="width" type="search" inputmode="numeric">
+        <div class="input-block">
+          <span>ширина(мм):</span>
+          <input class="input" id="width" type="search" inputmode="numeric">
+        </div>×
+        <div class="input-block" >
+          <span>высота(мм):</span>
+          <input class="input" id="length" type="search" inputmode="numeric">
+        </div>
+        
       </div>
-      </input>
-      <div class="inputLine">
-        <span>высота(мм):</span>
-        <input class="input" id="length" type="search" inputmode="numeric">
-      </div>
-      </input>
 
       <div class="inputLine">
-        <span>штук в коробке:</span>
-        <input class="input" type="search" value="1" inputmode="numeric" id="qty">
-        </input>
-      </div>
-      <div class="inputLine">
-        <span>коробок:</span>
-        <input class="input" type="search" value="1" inputmode="numeric" id="boxes">
-        </input>
-      </div>
-      <div class="inputLine">
-        <span>добавить:</span>
-        <input class="input" type="search" value="0" inputmode="numeric" id="pie">
-        </input>
+        <div class="input-block" >
+          <span>штук в коробке:</span>
+          <input class="input" type="search" value="1" inputmode="numeric" id="qty">
+          </input>
+        </div>
+        <span>×</span>
+        <div class="input-block" >
+          <span>коробок:</span>
+          <input class="input" type="search" value="1" inputmode="numeric" id="boxes">
+          </input>
+        </div>+
+        <div class="input-block" >
+          <span>поштучно:</span>
+          <input class="input" type="search" value="0" inputmode="numeric" id="pie">
+          </input>
+        </div>
+
       </div>
       
+
 
     </div>
     <button id="btn_calc">считать</button>
     <output id="result">-</output>
-    
+
 
   </div>
 

@@ -2,7 +2,7 @@
 class Params {
   constructor(w, h, qty, boxes, pie) {
     this.w = w,
-      this.l = h,
+      this.h = h,
       this.qty = qty,
       this.boxes = boxes,
       this.pie = pie
@@ -55,31 +55,31 @@ inputs.forEach((elem) => {
 
 
 input_height.addEventListener('input', () => {
-  params.l = event.target.value
+  params.l = Number(event.target.value)
   showParams()
   output.value = '-'
 })
 
 input_width.addEventListener('input', () => {
-  params.w = event.target.value
+  params.w = Number(event.target.value)
   showParams()
   output.value = '-'
 })
 
 input_qty.addEventListener('input', () => {
-  params.qty = event.target.value
+  params.qty = Number(event.target.value)
   showParams()
   output.value = '-'
 })
 
 
 input_boxes.addEventListener('input', () => {
-  params.boxes = input_boxes.value
+  params.boxes =Number(input_boxes.value)
   showParams()
   output.value = '-'
 })
 pie.addEventListener('input', () => {
-  params.pie = event.target.value
+  params.pie = Number( event.target.value)
   showParams()
   output.value = '-'
 })
@@ -132,8 +132,6 @@ function addTile(width, height) {
     params.l = height
     params.w = width
     output.value = '-'
-    // params.w = width
-    // params.l = height
     getSiblings(newTile).forEach((elem) => {
       elem.style.backgroundColor = ''
     })
@@ -166,7 +164,7 @@ function calcS(params) {
     params.qty = 1
   }
   let result = (params.qty*params.boxes+params.pie)*params.l*params.w/ 1000000
-  console.log(params)
+  console.log(`штук: ${(params.qty*params.boxes+params.pie)}`)
   return result
 
 
@@ -197,6 +195,7 @@ function isRepeat(width, height) {
       const element = tilesList[index];
       if ((element.width == height && element.height == width) || (element.width == width && element.height == height)) {
         console.log(`width = ${element.width} height = ${element.height}`)
+        element.style.focus = 
 
         isRepeat = true
         break;
