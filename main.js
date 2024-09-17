@@ -157,11 +157,11 @@ function addTile(width, height) {
 
 function calcS(params) {
   // Tab to edit
-  if (params.boxes == '' || params.boxes == 0) {
-    params.boxes = 1
+  if (params.boxes == '') {
+    params.boxes = 0
   }
-  if (params.qty == '' || params.qty == 0) {
-    params.qty = 1
+  if (params.qty == '') {
+    params.qty = 0
   }
   let result = (params.qty*params.boxes+params.pie)*params.h*params.w/ 1000000
   console.log(params)
