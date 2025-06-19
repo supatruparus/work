@@ -1,76 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>HTML</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
-<body>
-  <div class="wrapper">
-    <div class="inputs">
-      <div id="tiles">
-      </div>
-      <div class="inputLine">
-        <div class="input-block">
-          <span>ширина(мм):</span>
-          <input class="input" id="width" type="number" inputmode="numeric">
-        </div>
-        <span>
-          ×
-        </span>
-
-        <div class="input-block">
-          <span>высота(мм):</span>
-          <input class="input" id="length" type="number" inputmode="numeric">
-        </div>
-
-      </div>
-
-      <div class="inputLine">
+<style>
+    body{
+    height: 100%;
+    background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         
-       
-        <div class="input-block">
-          <span>коробок:</span>
-          <input class="input" type="number" value="1" inputmode="numeric" id="boxes">
-          </input>
-        </div>
- <span>×</span>
-<div class="input-block">
-          <span>штук в коробке:</span>
-          <input class="input" type="number" value="1" inputmode="numeric" id="qty">
-          </input>
-        </div>
-
-        <span>
-          +
-        </span>
-        <div class="input-block">
-          <span>поштучно:</span>
-          <input class="input" type="number" value="0" inputmode="numeric" id="pie">
-          </input>
-        </div>
-
-      </div>
-
-
-
+    }
+    .container{
+    display: flex;
+    align-items: center;
+    
+    justify-content: space-between;
+    /* background-color: aqua; */
+    align-self: center;
+    font-size: xx-large;
+    height: 500px;
+    width: 500px;
+    }
+    a{
+        font-size: xx-large;
+        color: aliceblue;
+    }
+</style>
+<body>
+    <div class="container">
+        <a href="/lincalc.html">Плитка</a> <a href="/plitka.html">Линолеум</a>
     </div>
-    <button id="btn_calc">считать</button>
-    <output id="result">-</output>
-
-
-  </div>
-
-  </div>
-
-
-
 </body>
-<script src="main.js"></script>
-
 </html>
