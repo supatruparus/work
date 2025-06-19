@@ -1,0 +1,113 @@
+<html>
+
+<head>
+  <title>HTML Calculator</title>
+  <meta charset="utf-8" name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+</head>
+<style>
+  body {
+    color: bisque;
+    background-color: black;
+    font-family: "Orloj", "Roboto", "Arial", sans-serif;
+    font-size: 46px;
+  }
+
+
+  form {
+    display: flex;
+    min-height: min(100%, 800px);
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-width: 500px;
+    max-height: 1200px;
+  }
+
+  .inputline {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .inputline span {
+    font-size: large;
+  }
+
+  #Sresult,
+  #Length {
+    font-size: xx-large;
+
+  }
+
+  input {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 60px;
+    font-size: larger;
+    align-items: center;
+
+    width: 140px;
+  }
+
+  input::placeholder {
+    font-size: small;
+  }
+</style>
+
+<body>
+  <center>
+    <form name="calculator">
+      <div class="inputline"><span>D внешний: </span><input class="input" type="Number" name="D" placeholder="D внешн"
+          value=""></div>
+      <div class="inputline"><span>d внутренний: </span><input type="Number" name="d" placeholder="d внутр" value="">
+      </div>
+      <div class="inputline"><span>витки: </span><input type="number" place name="vitki" placeholder="витки" value="">
+      </div>
+      <div class="inputline"><span>ширина рулона: </span>
+        <input class="input" id="width" type="Number" name="w" list="widths" placeholder="ширина рулона" value="">
+        <datalist id="widths">
+          <option value="1"></option>
+          <option value="1.5"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+          <option value="4"></option>
+        </datalist>
+      </div>
+      <div>Площадь(м²) = <output id="Sresult" OnClick="calculate()"></output></div>
+      <div>Длина(м) = <output id="Length" value=></output></div><output id="Length" value=></output>
+    </form>
+  </center>
+
+  <script>
+    document.querySelectorAll('input').forEach((element) => {
+      element.addEventListener('click', () => {
+        event.target.select();
+        if (event.target.id == 'width') {
+          event.target.value = '';
+        }
+      })
+    });
+    document.querySelectorAll('input').forEach((element) => {
+      element.addEventListener('input', () => {
+        calculate();
+      })
+    })
+    function setvalue(width) {
+      document.getElementById('width').value = width;
+    }
+    function calculate() {
+      let D = parseFloat(document.calculator.D.value.replace(/,/, '.'));
+      let d = parseFloat(document.calculator.d.value.replace(/,/, '.'));
+      let v = parseFloat(document.calculator.vitki.value.replace(/,/, '.'));
+      let w = parseFloat(document.calculator.w.value.replace(/,/, '.'));
+      let result = ((D + d) / 2) / 100 * v * w * 3.1416;
+      document.getElementById('Sresult').innerHTML = parseFloat(result).toFixed(3);
+      document.getElementById('Length').innerHTML = parseFloat(result / w).toFixed(3);
+    }
+  </script>
+</body>
+
+</html>
